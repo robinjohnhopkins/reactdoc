@@ -54,7 +54,7 @@
     "workbox-webpack-plugin": "3.6.3"
   },
   "scripts": {
-    "prestart" : "npm run gen:docs",
+    "prestart": "npm run gen:docs",
     "start": "npm-run-all --parallel start:docs gen:docs gen:docs-watch",
     "start:docs": "node scripts/start.js",
     "gen:docs": "node scripts/generateComponentdata.js",
@@ -124,6 +124,7 @@
   "devDependencies": {
     "chokidar": "^1.6.1",
     "npm-run-all": "^4.0.2",
-    "react-docgen": "^2.14.0"
+    "react-docgen": "^2.14.0",
+    "styled-components": "^1.4.5"
   }
 }
