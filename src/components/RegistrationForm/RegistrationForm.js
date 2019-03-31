@@ -7,21 +7,30 @@ import PasswordInput from '../PasswordInput';
 class RegistrationForm extends React.Component {
   constructor(props) {
     super(props);
+    var user = {};
+    if (props.user){
+      user = props.user;
+    }
+    if (!user.email){
+      user = this.state && this.state.user ? this.state.user : {
+        email: 'start',
+        password: ''
+      };
+    }
 
     this.state = {
-      user: {
-        email: '',
-        password: ''
-      },
+      user: user,
       errors: {},
       submitted: false,
     };
+    console.log('RegistrationForm ctor this.state', this.state, props, user.length);
   }
 
   onChange = (event) => {
     const user = this.state.user;
     user[event.target.name] = event.target.value;
     this.setState({user});
+    this.props.handleTextChange(user);
   }
 
   // Returns a number from 0 to 100 that represents password quality.
@@ -82,7 +91,7 @@ class RegistrationForm extends React.Component {
           maxLength={50}
           error={errors.password} />
 
-        <input type="submit" value="Register" onClick={this.onSubmit} />
+        <input type="submit" value="Register" onClick={this.onSubmit}  />
       </div>
     )
   }
@@ -94,6 +103,9 @@ RegistrationForm.propTypes = {
 
   /** Called when form is submitted */
   onSubmit: PropTypes.func.isRequired,
+
+  /** Called when form value is changed */
+  handleTextChange: PropTypes.func.isRequired,
 
   /** Minimum password length */
   minPasswordLength: PropTypes.number

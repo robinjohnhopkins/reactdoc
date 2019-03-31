@@ -5,6 +5,8 @@ import PasswordInput from 'ps-react/PasswordInput';
 class ExampleAllFeatures extends React.Component {
   constructor(props) {
     super(props);
+    const {handleTextChange, ...rest} = props;
+    this.safeProps = rest;
 
     this.state = {
       password: ''
@@ -28,7 +30,7 @@ class ExampleAllFeatures extends React.Component {
           placeholder="Enter password"
           showVisibilityToggle
           quality={this.getQuality()}
-          {...this.props} />
+          {...this.safeProps} />
       </div>
     )
   }
